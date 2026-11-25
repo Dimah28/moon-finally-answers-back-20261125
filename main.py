@@ -18,7 +18,7 @@ ENTRY = (
 )
 
 
-def validate_entry(text: str) -> None:
+def _validate_entry(text: str) -> None:
     """Enforce the bounty gate: 1-240 characters, one line, not blank."""
     if not 1 <= len(text) <= 240:
         raise ValueError(f"entry must be 1-240 characters, got {len(text)}")
@@ -29,7 +29,7 @@ def validate_entry(text: str) -> None:
 
 
 def main() -> None:
-    validate_entry(ENTRY)
+    _validate_entry(ENTRY)
     out_dir = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "output"))
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "entry.txt").write_text(ENTRY, encoding="utf-8")
